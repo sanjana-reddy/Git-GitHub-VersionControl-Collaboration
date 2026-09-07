@@ -25,4 +25,35 @@ class TodoManagerTest {
             () -> manager.addTask("")
         );
     }
+
+    @Test
+    void shouldMarkTaskAsCompleted() {
+        TodoManager manager = new TodoManager();
+
+        manager.addTask("Complete GitHub assignment");
+        manager.completeTask(0);
+
+        assertTrue(manager.isCompleted(0));
+    }
+
+    @Test
+    void shouldRejectInvalidCompletionIndex() {
+        TodoManager manager = new TodoManager();
+
+        manager.addTask("Complete GitHub assignment");
+
+        assertThrows(
+                IndexOutOfBoundsException.class,
+                () -> manager.completeTask(5)
+        );
+    }
+
+    @Test
+    void shouldStartTaskAsIncomplete() {
+        TodoManager manager = new TodoManager();
+
+        manager.addTask("Complete GitHub assignment");
+
+        assertFalse(manager.isCompleted(0));
+    }
 }
