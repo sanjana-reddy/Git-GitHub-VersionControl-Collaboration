@@ -47,4 +47,13 @@ class TodoManagerTest {
                 () -> manager.completeTask(5)
         );
     }
+
+    @Test
+    void shouldStartTaskAsIncomplete() {
+        TodoManager manager = new TodoManager();
+
+        manager.addTask("Complete GitHub assignment");
+
+        assertFalse(manager.isCompleted(0));
+    }
 }
